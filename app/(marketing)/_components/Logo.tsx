@@ -9,8 +9,21 @@ const font = Poppins({
 
 function Logo() {
   return (
-    <div className="hidden md:flex items-center gap-x-2">
-      <Image src={"/logo.jpg"} height={40} width={40} alt="logo" className="" />
+    <div className="hidden items-center gap-x-2 md:flex">
+      <Image
+        src={"/logo.jpg"}
+        height={40}
+        width={40}
+        alt="logo"
+        className="dark:hidden"
+      />
+      <Image
+        src={"/logo-dark.jpg"}
+        height={40}
+        width={40}
+        alt="logo"
+        className="hidden dark:block"
+      />
       <p className={cn("font-semibold", font.className)}>Quickflow</p>
     </div>
   );
