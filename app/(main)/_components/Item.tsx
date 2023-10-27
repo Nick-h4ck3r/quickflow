@@ -36,7 +36,7 @@ interface ItemProps {
 
   //  required props
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
   icon: LucideIcon;
 }
 
