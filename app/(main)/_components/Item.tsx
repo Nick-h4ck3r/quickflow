@@ -110,7 +110,7 @@ export const Item = ({
         <div
           role="button"
           onClick={handleExpand}
-          className="mr-1 h-full rounded-sm hover:bg-neutral-300 dark:bg-neutral-600"
+          className="mr-1 h-full rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
         >
           <ChevronIcon className="h-4 w-4 shrink-0 text-muted-foreground/50" />
         </div>
