@@ -126,7 +126,7 @@ export const Item = ({
 
       {isSearch && (
         <kbd className="pointer-events-none ml-auto inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-          ctrl + K
+          ctrl + q
         </kbd>
       )}
 
@@ -179,7 +179,7 @@ Item.Skeleton = function ItemSkeleton({ level }: { level?: number }) {
       className="flex gap-x-2 py-[3px]"
     >
       <Skeleton className="h-4 w-4" />
-      <Skeleton className="h-4 w-[30%]" />
+      <Skeleton className="h-4 w-[50%]" />
     </div>
   );
 };
