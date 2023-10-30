@@ -71,7 +71,7 @@ export const Item = ({
         if (!expanded) {
           onExpand?.();
         }
-        // router.push(`/documents/${documentId}`);
+        router.push(`/documents/${documentId}`);
       },
     );
     toast.promise(promise, {
@@ -92,6 +92,8 @@ export const Item = ({
       success: "Note moved to trash!",
       error: "Failed to archive a note.",
     });
+
+    router.push("/documents")
   };
 
   const ChevronIcon = expanded ? ChevronDown : ChevronRight;
