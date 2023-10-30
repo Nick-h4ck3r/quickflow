@@ -21,6 +21,7 @@ export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
   const [value, setValue] = useState(initialData.title);
 
   const update = useMutation(api.documents.update);
+  const removeIcon = useMutation(api.documents.removeIcon);
 
   const enableInput = () => {
     if (preview) return;
@@ -42,6 +43,13 @@ export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
     });
   };
 
+  const onIconSelect = (icon: string) => {
+    update({ id: initialData._id, icon });
+  };
+  const onRemoveIcon = () => {
+    removeIcon({ id: initialData._id });
+  };
+
   const onKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -53,12 +61,13 @@ export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
     <div className="group relative pl-[54px]">
       {!!initialData.icon && !preview && (
         <div className="group/icon flex items-center gap-x-2 pt-6">
-          <IconPicker onChange={() => {}}>
+          <IconPicker onChange={onIconSelect}>
             <p className="text-6xl transition hover:opacity-75">
               {initialData.icon}
             </p>
           </IconPicker>
           <Button
+            onClick={onRemoveIcon}
             className="rounded-full text-xs text-muted-foreground opacity-0 transition group-hover/icon:opacity-100"
             variant={"outline"}
             size={"icon"}
@@ -74,7 +83,7 @@ export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
 
       <div className="flex items-center gap-x-1 py-4 opacity-0 group-hover:opacity-100">
         {!initialData.icon && !preview && (
-          <IconPicker asChild onChange={() => {}}>
+          <IconPicker asChild onChange={onIconSelect}>
             <Button
               className="text-xs text-muted-foreground"
               variant={"outline"}
