@@ -30,12 +30,13 @@ import { useSearch } from "@/hooks/use-search";
 import { useSettings } from "@/hooks/use-settings";
 import { useMediaQuery } from "usehooks-ts";
 import { useQuery, useMutation } from "convex/react";
-import { usePathname, useParams } from "next/navigation";
+import { usePathname, useParams, useRouter } from "next/navigation";
 import Navbar from "./Navbar";
 
 function Navigation() {
   const pathname = usePathname();
   const params = useParams();
+  const router = useRouter();
 
   const isMobile = useMediaQuery("(max-width:768px)");
 
@@ -127,6 +128,8 @@ function Navigation() {
   const handleCreate = () => {
     const promise = create({
       title: "Untitled",
+    }).then((documentId) => {
+      router.push(`/documents/${documentId}`);
     });
 
     toast.promise(promise, {
