@@ -13,7 +13,7 @@ import { toast } from "sonner";
 import { api } from "@/convex/_generated/api";
 import { useRouter } from "next/navigation";
 
-function page() {
+function Page() {
   const { user } = useUser();
   const router = useRouter();
 
@@ -57,4 +57,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
