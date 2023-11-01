@@ -11,13 +11,18 @@ import Image from "next/image";
 import { toast } from "sonner";
 
 import { api } from "@/convex/_generated/api";
+import { useRouter } from "next/navigation";
 
 function page() {
   const { user } = useUser();
+  const router = useRouter();
+
   const create = useMutation(api.documents.create);
 
   const onCreate = () => {
-    const promise = create({ title: "Untitled" });
+    const promise = create({ title: "Untitled" }).then((docId) => {
+      router.push(`/documents/${docId}`);
+    });
 
     toast.promise(promise, {
       loading: "Creating a new note...",
