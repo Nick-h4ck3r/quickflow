@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Quickflow: A Better & Open-Source Alternative to Notion
 
-## Getting Started
+![Image of the app here]()
 
-First, run the development server:
+This repository is dedicated to Quickflow, an open-source alternative to Notion that aims to provide a superior user experience.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Technologies used to build
+
+- [Next.js 13](https://nextjs.org/blog/next-13): A powerful React framework for building modern web applications.
+- [Shadcn](https://ui.shadcn.com/): Beautifully designed components that you can copy and paste into your apps.
+- [Clerk](https://clerk.com/): Clerk is a complete suite of embeddable UIs, flexible APIs, and admin dashboards to authenticate and manage your users.
+- [Convex](https://www.convex.dev/): Convex is a Backend Application Platform that keeps you focused on building your product. Convex Functions, Database, File Storage, Scheduling, and Search fit together cohesively
+- [TailwindCSS](https://tailwindcss.com/): A utility-first CSS framework for streamlined web application styling.
+
+## Key Features
+
+- Real-time database 🔗
+- Notion-style editor 📝
+- Light and Dark mode 🌓
+- Infinite children documents 🌲
+- Trash can & soft delete 🗑️
+- Authentication 🔐
+- File upload
+- File deletion
+- File replacement
+- Icons for each document (changes in real-time) 🌠
+- Expandable sidebar ➡️🔀⬅️
+- Full mobile responsiveness 📱
+- Publish your note to the web 🌐
+- Fully collapsable sidebar ↕️
+- Landing page 🛬
+- Cover image of each document 🖼️
+- Recover deleted files 🔄📄
+
+## Setting Up the Project in Local
+
+### Prerequisites
+
+Ensure that you have *Node version 18.x.x* or a higher version installed.
+
+### Cloning the repository
+
+```shell
+git clone https://github.com/Nick-h4ck3r/quickflow.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install packages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+npm i
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Setup .env file
 
-## Learn More
+```js
+# Deployment used by `npx convex dev`
+CONVEX_DEPLOYMENT=
+NEXT_PUBLIC_CONVEX_URL=
 
-To learn more about Next.js, take a look at the following resources:
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+EDGE_STORE_ACCESS_KEY=
+EDGE_STORE_SECRET_KEY=
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Setup Convex
 
-## Deploy on Vercel
+```shell
+npx convex dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Start the app
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```shell
+npm run dev
+```
+
+## Credits
+
+Special thanks to Antonio for his invaluable tutorial, which served as the foundation for building this app. You can find the tutorial [here](https://youtu.be/0OaDyjB9Ib8?si=D38xIsi46hG7M2sC).
