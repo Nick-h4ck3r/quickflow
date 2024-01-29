@@ -1,6 +1,9 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { Poppins } from "next/font/google";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -9,7 +12,10 @@ const font = Poppins({
 
 function Logo() {
   return (
-    <div className="hidden items-center gap-x-2 md:flex">
+    <div
+      onClick={() => redirect("/")}
+      className="hidden items-center gap-x-2 md:flex"
+    >
       <Image
         src={"/logo.jpg"}
         height={40}

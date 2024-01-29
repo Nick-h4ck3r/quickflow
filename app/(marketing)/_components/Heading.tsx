@@ -13,10 +13,11 @@ const Heading = () => {
   return (
     <div className="max-w-3xl space-y-4">
       <h1 className="text-3xl font-bold sm:text-5xl md:text-6xl">
-        Streamline your ideas and tasks, effortlessely. Welcome to{" "}
-        <span className="underline">Quickflow</span>
+        <span className="">Quickflow:</span> A Better & Open-Source Notion
+        Alternative
       </h1>
-      <h3 className="text-base font-medium sm:text-xl md:text-2xl">
+
+      <h3 className="text-base font-light opacity-70 sm:text-xl md:text-xl">
         Quickflow is the connected workspace where <br />
         better, faster work happens.
       </h3>

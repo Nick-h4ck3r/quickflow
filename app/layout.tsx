@@ -1,4 +1,4 @@
-import { Inter } from "next/font/google";
+import { Outfit } from "next/font/google";
 import type { Metadata } from "next";
 
 import { Toaster } from "sonner";
@@ -10,14 +10,14 @@ import { ConvexClientProvider } from "@/components/providers/convex-provider";
 import { ModalProvider } from "@/components/providers/modal-provider";
 import { EdgeStoreProvider } from "../lib/edgestore";
 
-const inter = Inter({
-  weight: ["400", "700"],
+const outfit = Outfit({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "Quickflow",
-  description: "Streamline your ideas and tasks, effortlessely...",
+  description: "A Better & Open-Source Notion Alternative",
   icons: {
     icon: [
       {
@@ -41,7 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={outfit.className}>
         <ConvexClientProvider>
           <EdgeStoreProvider>
             <ThemeProvider
