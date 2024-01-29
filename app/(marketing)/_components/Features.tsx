@@ -62,7 +62,7 @@ const Features = () => {
               <div className="md:pr-12 lg:pr-24">
                 <div>
                   <p className="text-2xl font-semibold tracking-tight text-black dark:text-white sm:text-4xl">
-                  Why choose Quickflow over 100's of other note taking apps?
+                  Why choose Quickflow over 100&apos;s of other note taking apps?
                   </p>
                   <p className="mt-4 max-w-xl text-lg tracking-tight text-gray-600 dark:text-gray-400">
                   the unique qualities that make Quickflow stand out among the sea of note-taking apps.
