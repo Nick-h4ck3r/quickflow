@@ -1,6 +1,6 @@
 # Quickflow: A Better & Open-Source Alternative to Notion
 
-![Image of the app here]()
+![Image of the app here](image.png)
 
 This repository is dedicated to Quickflow, an open-source alternative to Notion that aims to provide a superior user experience.
 
