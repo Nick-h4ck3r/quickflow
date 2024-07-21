@@ -8,7 +8,7 @@ const WorkTogether = () => {
           <div className="relative flex flex-col items-center text-center">
             <h1 className="max-w-4xl text-3xl font-bold text-white sm:text-4xl md:text-5xl xl:text-6xl">
               {" "}
-              Let&apos;s works on something togheter.{" "}
+              Let&apos;s works on something together.{" "}
             </h1>
             <p className="mt-10 max-w-xl text-base text-gray-300">
               Ready to take your projects to the next level? Let&apos;s collaborate
