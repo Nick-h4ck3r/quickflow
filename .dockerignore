@@ -1,5 +1,6 @@
 node_modules
 .git
 .gitignore
-.env.example
+.env.local.example
 .env
+.env.local
