@@ -118,7 +118,7 @@ EDGE_STORE_SECRET_KEY=
 ```shell
 npm run dev
 ```
-### starting the Developement Server With Docker
+### Starting the Developement Server With Docker
 
 ```
   docker build -t TAG_NAME .
