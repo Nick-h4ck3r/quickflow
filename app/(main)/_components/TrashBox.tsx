@@ -92,20 +92,24 @@ export const TrashBox = () => {
             <span className="truncate pl-2">
               {document.title}
             </span>
-            <div className="flex items-center">
-              <div
-                role="button"
-                className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600 invisible group-hover:visible"
-              >
-                <Undo className="h-4 w-4 text-muted-foreground" />
-              </div>
+                <div className="flex items-center">
                 <div
+                  onClick={(e) => onRestore(e, document._id)}
                   role="button"
                   className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600 invisible group-hover:visible"
                 >
-                  <Trash className="h-4 w-4 text-muted-foreground" color="red"/>
+                  <Undo className="h-4 w-4 text-muted-foreground" />
                 </div>
-            </div>
+                <ConfirmModal onConfirm={() => onRemove(document._id)}>
+                  <div
+                    role="button"
+                    className="rounded-sm p-2 hover:bg-neutral-200 dark:hover:bg-neutral-600 invisible group-hover:visible"
+                  >
+                    <Trash className="h-4 w-4 text-muted-foreground" color="red"/>
+                  </div>
+                </ConfirmModal>
+              </div>
+            
           </div>
         ))}
       </div>
