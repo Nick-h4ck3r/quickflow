@@ -60,25 +60,9 @@ export const Item = ({
   const archive = useMutation(api.documents.archive);
   const copy = useMutation(api.documents.copy);
 
-  let document:
-    | {
-        _id: GenericId<"documents">;
-        _creationTime: number;
-        parentDocument?: GenericId<"documents"> | undefined;
-        content?: string | undefined;
-        coverImage?: string | undefined;
-        icon?: string | undefined;
-        title: string;
-        userId: string;
-        isArchived: boolean;
-        isPublished: boolean;
-      }
-    | undefined;
-  if (id) {
-    document = useQuery(api.documents.getById, {
-      documentId: id as Id<"documents">,
-    });
-  }
+  const document = useQuery(api.documents.getById, id ? {
+    documentId: id as Id<"documents">,
+  } : "skip");
 
   const handleExpand = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
@@ -121,7 +105,7 @@ export const Item = ({
 
   const onCopy = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
-    if (!id) return;
+    if (!id || !document) return;
 
     const promise = copy({
       title: `Copy of ${document?.title}`,
