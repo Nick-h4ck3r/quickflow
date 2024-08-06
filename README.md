@@ -36,6 +36,7 @@ Quickflow is an open-source alternative to Notion that aims to provide a superio
 
 Ensure that you have Node.js version 18.x.x or higher installed.
 
+
 ### Cloning the Repository
 
 ```shell
@@ -112,10 +113,16 @@ EDGE_STORE_ACCESS_KEY=
 EDGE_STORE_SECRET_KEY=
 ```
 
-### Starting the Development Server
+### Starting the Development Server Locally Without Docker
 
 ```shell
 npm run dev
+```
+### Starting the Developement Server With Docker
+
+```
+  docker build -t TAG_NAME .
+  docker run -p 3000:3000 --env-file .env.local TAG_NAME
 ```
 
 ## Deployment
