@@ -62,7 +62,7 @@ export const Item = ({
 
   const document = useQuery(api.documents.getById, id ? {
     documentId: id as Id<"documents">,
-  } : null);
+  } : "skip");
 
   const handleExpand = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
