@@ -12,7 +12,8 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { useMutation } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
+import { GenericId } from "convex/values";
 import {
   ChevronDown,
   ChevronRight,
@@ -20,6 +21,7 @@ import {
   MoreHorizontal,
   Plus,
   Trash,
+  Copy,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -56,6 +58,27 @@ export const Item = ({
   const router = useRouter();
   const create = useMutation(api.documents.create);
   const archive = useMutation(api.documents.archive);
+  const copy = useMutation(api.documents.copy);
+
+  let document:
+    | {
+        _id: GenericId<"documents">;
+        _creationTime: number;
+        parentDocument?: GenericId<"documents"> | undefined;
+        content?: string | undefined;
+        coverImage?: string | undefined;
+        icon?: string | undefined;
+        title: string;
+        userId: string;
+        isArchived: boolean;
+        isPublished: boolean;
+      }
+    | undefined;
+  if (id) {
+    document = useQuery(api.documents.getById, {
+      documentId: id as Id<"documents">,
+    });
+  }
 
   const handleExpand = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
@@ -93,7 +116,30 @@ export const Item = ({
       error: "Failed to archive a note.",
     });
 
-    router.push("/documents")
+    router.push("/documents");
+  };
+
+  const onCopy = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
+    if (!id) return;
+
+    const promise = copy({
+      title: `Copy of ${document?.title}`,
+      content: document?.content,
+      coverImage: document?.coverImage,
+      icon: document?.icon,
+      parentDocument: document?.parentDocument,
+    }).then((documentId) => {
+      if (!expanded) {
+        onExpand?.();
+      }
+      router.push(`/documents/${documentId}`);
+    });
+    toast.promise(promise, {
+      loading: "Copying a new note...",
+      success: "Note copied!",
+      error: "Failed to copy the note.",
+    });
   };
 
   const ChevronIcon = expanded ? ChevronDown : ChevronRight;
@@ -149,9 +195,16 @@ export const Item = ({
               side="right"
               forceMount
             >
-              <DropdownMenuItem onClick={onArchive} className="text-red-500">
+              <DropdownMenuItem onClick={onArchive} className="text-red-500 cursor-pointer">
                 <Trash className="mr-2 h-4 w-4" />
                 Delete
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={onCopy}
+                className="cursor-pointer text-muted-foreground"
+              >
+                <Copy className="mr-2 h-4 w-4" />
+                Make a copy
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <div className="p-2 text-xs text-muted-foreground">

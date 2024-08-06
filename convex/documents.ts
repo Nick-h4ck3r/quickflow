@@ -349,3 +349,30 @@ export const removeCoverImage = mutation({
     return document;
   },
 });
+
+export const copy = mutation({
+  args: {
+    title: v.string(),
+    parentDocument: v.optional(v.id("documents")),
+    content: v.optional(v.string()),
+    coverImage: v.optional(v.string()),
+    icon: v.optional(v.string()),
+  },
+
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) {
+      throw new Error("Not authenticated");
+    }
+
+    const userId = identity.subject;
+    const document = await ctx.db.insert("documents", {
+      userId,
+      isArchived: false,
+      isPublished: false,
+      ...args,
+    });
+
+    return document;
+  },
+});
