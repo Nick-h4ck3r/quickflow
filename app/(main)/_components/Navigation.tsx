@@ -65,6 +65,21 @@ function Navigation() {
     }
   }, [pathname, isMobile]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "p") {
+        e.preventDefault();
+        handleCreate();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -153,7 +168,7 @@ function Navigation() {
           onClick={collapse}
           role="button"
           className={cn(
-            "absolute right-2 top-3 h-6 w-6 rounded-sm text-muted-foreground opacity-0 transition hover:bg-neutral-300 group-hover/sidebar:opacity-100 dark:hover:bg-neutral-600",
+            "absolute right-2 top-3 h-6 w-6 rounded-sm text-muted-foreground opacity-0 transition group-hover/sidebar:opacity-100 hover:bg-neutral-300 dark:hover:bg-neutral-600",
             isMobile && "opacity-100",
           )}
         >
@@ -163,7 +178,12 @@ function Navigation() {
           <UserItem />
           <Item onClick={search.onOpen} label="Search" icon={Search} isSearch />
           <Item onClick={settings.onOpen} label="Settings" icon={Settings} />
-          <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
+          <Item
+            onClick={handleCreate}
+            label="New page"
+            icon={PlusCircle}
+            isPage
+          />
         </div>
         <div className="mt-4">
           <DocumentList />

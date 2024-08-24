@@ -32,6 +32,7 @@ interface ItemProps {
   documentIcon?: string;
   active?: boolean;
   expanded?: boolean;
+  isPage?: boolean;
   isSearch?: boolean;
   level?: number;
   onExpand?: () => void;
@@ -50,6 +51,7 @@ export const Item = ({
   active,
   documentIcon,
   level = 0,
+  isPage,
   isSearch,
   onExpand,
   expanded,
@@ -60,9 +62,14 @@ export const Item = ({
   const archive = useMutation(api.documents.archive);
   const copy = useMutation(api.documents.copy);
 
-  const document = useQuery(api.documents.getById, id ? {
-    documentId: id as Id<"documents">,
-  } : "skip");
+  const document = useQuery(
+    api.documents.getById,
+    id
+      ? {
+          documentId: id as Id<"documents">,
+        }
+      : "skip",
+  );
 
   const handleExpand = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
@@ -162,13 +169,19 @@ export const Item = ({
         </kbd>
       )}
 
+      {isPage && (
+        <kbd className="pointer-events-none ml-auto inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+          ctrl + p
+        </kbd>
+      )}
+
       {!!id && (
         <div className="ml-auto flex items-center gap-x-2">
           <DropdownMenu>
             <DropdownMenuTrigger onClick={(e) => e.stopPropagation()} asChild>
               <div
                 role="button"
-                className="ml-auto h-full rounded-sm opacity-0 hover:bg-neutral-300 group-hover:opacity-100 dark:hover:bg-neutral-600"
+                className="ml-auto h-full rounded-sm opacity-0 group-hover:opacity-100 hover:bg-neutral-300 dark:hover:bg-neutral-600"
               >
                 <MoreHorizontal className="h-4 w-4 text-muted-foreground" />
               </div>
@@ -179,7 +192,10 @@ export const Item = ({
               side="right"
               forceMount
             >
-              <DropdownMenuItem onClick={onArchive} className="text-red-500 cursor-pointer">
+              <DropdownMenuItem
+                onClick={onArchive}
+                className="cursor-pointer text-red-500"
+              >
                 <Trash className="mr-2 h-4 w-4" />
                 Delete
               </DropdownMenuItem>
@@ -199,7 +215,7 @@ export const Item = ({
           <div
             role="button"
             onClick={onCreate}
-            className="ml-auto h-full rounded-sm opacity-0 hover:bg-neutral-300 group-hover:opacity-100 dark:hover:bg-neutral-600"
+            className="ml-auto h-full rounded-sm opacity-0 group-hover:opacity-100 hover:bg-neutral-300 dark:hover:bg-neutral-600"
           >
             <Plus className="h-4 w-4 text-muted-foreground" />
           </div>
